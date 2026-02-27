@@ -60,7 +60,7 @@ public class ListaContactos {
 
         while (actual != null) {
             System.out.println(actual.getDato());
-            actual.setSiguiente(actual.getSiguiente());
+            actual = actual.getSiguiente();
         }
     }
 }
