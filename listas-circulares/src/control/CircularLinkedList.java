@@ -15,7 +15,7 @@ public class CircularLinkedList {
    public void add(Contact contact){
        Node newNode = new Node(contact);
 
-       if (tail == null){
+       if (isEmpty()){
            //lista vacia
            tail = newNode;
            tail.setNext(tail);
@@ -30,7 +30,7 @@ public class CircularLinkedList {
 
    // Buscar por nombre
     public Contact findByName(String name){
-       if(tail == null) return null;
+       if(isEmpty()) return null;
 
        Node current = tail.getNext();//primer nodo
 
@@ -45,7 +45,7 @@ public class CircularLinkedList {
     }
 
     public boolean deleteByName(String name){
-       if(tail == null) return false;
+       if(isEmpty()) return false;
 
        Node current = tail.getNext();
        Node previous = tail;
@@ -74,8 +74,35 @@ public class CircularLinkedList {
                 size --;
                 return true;
            }
+           previous = current;
+           current = current.getNext();
        } while (current != tail.getNext());
        return false;
+    }
+
+    // Mostrar todos los elementos de la lista
+    public void listAll(){
+       if (isEmpty()){
+           System.out.println("Lista Vacia");
+           return;
+       }
+
+       Node current = tail.getNext();
+
+       do {
+           System.out.println(current.getValue());
+           current = current.getNext();
+       } while(current != tail.getNext());
+    }
+
+    // Obtener el tamano de la lista
+    public int getSize(){
+       return size;
+    }
+
+    // Verificar si la lista está vacia
+    public boolean isEmpty(){
+       return tail == null;
     }
 }
 
